@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/styles.css">
+    <script src="/main.js"></script>
+    <title>Bagikan Undangan</title>
+</head>
+<body>
+    <div class="container">
+        <div class="wrapper">
+            <h1>Share Undangan</h1>
+            <p style="margin-bottom: 3rem;">Bagikan undangan secara praktis via WhatsApp.</p>
+        
+            <form action="/kirim.html" method="get">
+                <div class="field-wrapper">
+                    <label for="link">Link Undangan</label>
+                    <br />
+                    <input type="text" name="link" id="link" placeholder="https://kanyaah.com/fulanah-fulan">
+                </div>
+                <div class="field-wrapper">
+                    <label for="link">Parameter Nama Tamu</label>
+                    <br />
+                    <span>Contoh: https://kanyaah.com/fulanah-fulan?<strong style="font-weight: 800; font-style: italic; color: red;">to</strong>=Nama+Tamu</span>
+                    <input type="text" name="guest_key" id="guest_key" value="to", placeholder="Contoh: to, yth, dear, untuk.">
+                </div>
+                <div class="field-wrapper">
+                    <label for="guests">List Nama Tamu</label>
+                    <br />
+                    <span>Satu nama per baris</span>
+                    <textarea name="guests" id="guests" cols="30" rows="10" placeholder="Masukkan nama tamu. Satu nama tamu per baris."></textarea>
+                </div>
+                <div class="field-wrapper">
+                    <label for="guests">Template Pesan</label>
+                    <br />
+                    <span id="errorMessage" style="color: red; font-style: normal;"></span>
+                    <textarea name="message_template" id="message_template" cols="30" rows="10" placeholder="Tuliskan template pesan undangan">Assalamu'alaikum Wr. Wb
+Bismillahirahmanirrahim.
+        
+Maha suci Allah yang telah menjadikan segala sesuatu lebih indah dan sempurna
+        
+Kepada Yth. {{ nama_tamu }}
+        
+Tanpa mengurangi rasa hormat, perkenankan kami mengundang Bapak/Ibu/Saudara/i, teman sekaligus sahabat, untuk menghadiri acara pernikahan kami, Fulanah & Fulan.
+        
+Informasi mengenai detail acara, lokasi, dan waktu lebih lengkap dapat diakses pada tautan terlampir :
+                        
+{{ link_undangan }}
+        
+Merupakan suatu kebahagiaan bagi kami apabila Bapak/Ibu/Saudara/i berkenan untuk hadir dan memberikan doa restu.
+        
+Mohon maaf perihal undangan hanya di bagikan melalui pesan ini. Terima kasih banyak atas perhatiannya.
+        
+Wassalamu'alaikum Wr. Wb.
+        
+Kami yang berbahagia
+Fulan & Fulanah.</textarea>
+                </div>
+                <div class="field-wrapper">
+                    <button class="button secondary-button" id="saveButton" onclick="saveAndAlert()">Simpan</button>
+                </div>
+                <div class="field-wrapper">
+                    <button class="button primary-button" type="submit" id="submitButton" onclick="populateAndSend()">Kirim</button>
+                </div>
+            </form>    
+        </div>
+    </div>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            ["saveButton", "submitButton"].forEach(button => {
+                document.getElementById(button).addEventListener("click", function (e) {
+                    e.preventDefault();
+                })
+            })
+
+            setFieldValues()
+        })
+    </script>
+</body>
+<footer class="container">
+    <div class="wrapper centered" style="font-size: 14px;">
+        Made with ❤️ by <a href="https://twitter.com/adi_prnm">@adi_prnm</a>.
+        <br><br>
+        Traktir saya <a href="https://www.nihbuatjajan.com/adipurnm">jajan</a> ☕
+    </div>
+</footer>
+</html>

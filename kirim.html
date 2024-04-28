@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/styles.css">
+    <script src="/main.js"></script>
+    <title>Bagikan Undangan</title>
+</head>
+<body>
+    <div class="container">
+        <div class="wrapper">
+            <p style="font-style: italic; font-size: 14px; text-decoration: underline;" id="step"></p>
+            <p style="margin-bottom: 0.25rem;">Template pesan untuk:</p>
+            <h3 style="margin-top: 0; font-size: 1.5rem; font-weight: 600; text-decoration: underline" id="currentGuest"></h3>
+            <div id="invitationMessage" style="margin: 2rem 0; line-height: 1.5em;"></div>
+            <div class="floating">
+                <div>
+                    <div>
+                        <button class="button success-button" onclick="sendToWhatsApp()">Kirim via WhatsApp</button>
+                        <br>
+                        <button class="button primary-button" onclick="nextGuest()">Selanjutnya</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const message = populateMessage();
+            invitationMessage.innerText = message
+
+            setStep()
+        })
+    </script>
+</body>
+<footer class="container">
+    <div class="wrapper centered" style="font-size: 14px;">
+        Made with ❤️ by <a href="https://twitter.com/adi_prnm">@adi_prnm</a>. 
+        <br><br>
+        Traktir saya <a href="https://www.nihbuatjajan.com/adipurnm">jajan</a> ☕
+    </div>
+</footer>
+</html>
