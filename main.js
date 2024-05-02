@@ -57,7 +57,10 @@ function populateAndSend() {
     if (missingPlaceholders.length != 0) {
         errorMessage.innerText = `${missingPlaceholders.join(" dan ")} harus ada di dalam template pesan.`
     }
-    if (isError) return;    
+    if (isError) {
+        window.location.href = "#"
+        return      
+    }  
     
     save()
     window.open("/kirim.html", "_self")
