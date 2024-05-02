@@ -1,10 +1,14 @@
 function setFieldValues() {
-    const linkValue = localStorage.getItem("link")
+    const urlSearchParams = new URLSearchParams(window.location.search)
+
+    let linkValue = urlSearchParams.get("url")
+    linkValue ||= localStorage.getItem("link")
     if (linkValue) {
         link.value = linkValue
     }
 
-    const guestKey = localStorage.getItem("guest_key")
+    let guestKey = urlSearchParams.get("key")
+    guestKey ||= localStorage.getItem("guest_key")
     if (guestKey) {
         guest_key.value = guestKey
     }
@@ -37,16 +41,23 @@ function saveAndAlert() {
 function populateAndSend() {
     const messageTemplate = message_template.value
     let missingPlaceholders = []
+    let isError = false
     if (!messageTemplate.includes("{{ nama_tamu }}")) {
+        isError = true
         missingPlaceholders.push("{{ nama_tamu }}")
     }
     if (!messageTemplate.includes("{{ link_undangan }}")) {
+        isError = true
         missingPlaceholders.push("{{ link_undangan }}")
+    }
+    if (guests.value.trim().length == 0) {
+        isError = true
+        guestListErrorMessage.innerText = "Nama tamu undangan harus diisi."
     }
     if (missingPlaceholders.length != 0) {
         errorMessage.innerText = `${missingPlaceholders.join(" dan ")} harus ada di dalam template pesan.`
-        return;
     }
+    if (isError) return;    
     
     save()
     window.open("/kirim.html", "_self")
